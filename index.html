@@ -300,124 +300,61 @@ overflow-x: hidden!important;
 
 /*oração*/
 
-.prayer-section {
+.prayer {
   background-color: #f2f2f2;
   padding: 60px 60px;
   text-align: center;
 }
 
-.prayer-section h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.prayer-section form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.prayer-section textarea {
-  width: 400px;
-  height: 100px;
-  padding: 10px;
-  margin-right: 10px;
-  resize: none;
-}
-
-.prayer-section button {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  padding: 10px 20px;
-  background-color: #ff3701;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.prayer-section button:hover {
-  background-color: #ff5401;
-}
-
-.bold-font {
-  font-weight: bold;
-}
-
-h2 span {
-  font-weight: lighter;
-}
-
-.prayer-section h2 {
+.prayer h2 {
       font-family: 'Montserrat', sans-serif;
       font-size: 24px;
       margin-bottom: 20px;
+    }
+
+    .prayer form {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+
+    .prayer label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .prayer textarea {
+      width: 400px;
+      height: 100px;
+      padding: 10px;
+      margin-right: 10px;
+      resize: none;
+    }
+    .prayer button {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      padding: 10px 20px;
+      background-color: #ff3701;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .prayer button:hover {
+      background-color: #ff5401;
+    }
+    .success-message {
+      margin-top: 20px;
+      font-weight: bold;
       text-align: center;
     }
 
-    .prayer-section span.light-font {
-      margin-right: 5px;
-    }
 
-    .prayer-section span.bold-font {
-      margin-left: 5px;
-    }
-
-    .padding-section {
-  padding-top: 40px;
-  padding-bottom: 80px;
-}
-
-    #mensagem-agradecimento h3,
-    #mensagem-agradecimento p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-  }
 
   </style>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://apis.google.com/js/api.js"></script>
-<script>
-$(document).ready(function() {
-  $('.slider').slick({
-    arrows: true,
-    dots: false,
-    infinite: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-  });
-});
 
-// Função para enviar o pedido de oração para o Google Sheets
-function enviarPedidoOração() {
-      const pedido = document.getElementById('prayer-textarea').value;
-      // Aqui você precisa adicionar o código para enviar o pedido para o Google Sheets usando a API do Google Sheets.
-      // É recomendado usar o Google Apps Script para fazer essa integração. Consulte a documentação do Google para mais detalhes.
-
-      exibirMensagemConfirmacao();
-    }
-
-    // Função para exibir a mensagem de confirmação
-    function exibirMensagemConfirmacao() {
-      const confirmationMessage = document.getElementById('confirmation-message');
-      confirmationMessage.textContent = 'Recebemos seu pedido! Prossiga confiando, Jesus vive! Há esperança!';
-    }
-
-    // Manipulador de evento para o envio do formulário
-    document.querySelector('form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      enviarPedidoOração();
-    });
-
-  </script>
 </head>
 <body>
   <header>
@@ -452,19 +389,17 @@ function enviarPedidoOração() {
     </div>
   </div>
 
-  <div class="prayer-section padding-section">
-    <h2><span class="light-font">Por favor, orem por</span> <span class="bold-font">MIM</span></h2>
-    <form id="prayform">
-      <textarea id="pray-message" placeholder="Escreva seu pedido de oração"></textarea>
-      <div id="confirmation-message"></div>
-      <button >Enviar</button>
-    </form>
-    <div id="mensagem-agradecimento" style="display: none;">
-      <h3>Recebemos seu pedido!</h3>
-      <p>Prossiga confiando, <b>Jesus vive!</b> Há esperança!</p>
-    </div>
-  </div>
   
+  <div class="prayer">
+    <h2>Por favor, orem por <b>MIM</b></h2>
+    <form id="emailForm">
+      <div id="formContent">
+        <textarea id="message" name="message" rows="4" placeholder="Escreva seu pedido de oração" required></textarea>
+        <button type="submit"><b>Enviar</b> Pedido</button>
+      </div>
+      <div id="successMessage" class="success-message"></div>
+    </form>
+  </div>
 
 
   <footer>
@@ -491,5 +426,58 @@ function enviarPedidoOração() {
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d558.802191609622!2d-49.081810806376275!3d-25.545648806422534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcf59fb039ee27%3A0xe68e0bce41993e98!2sIgreja%20Almas%20Para%20Cristo!5e0!3m2!1spt-BR!2sbr!4v1684975806117!5m2!1spt-BR!2sbr" width="600" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('.slider').slick({
+    arrows: true,
+    dots: false,
+    infinite: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+  });
+});
+
+// Função para enviar o pedido de oração para o Gmail
+document.getElementById("emailForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Impede o envio do formulário padrão
+      
+      // Obter o valor da mensagem
+      var message = document.getElementById("message").value;
+      
+      // Construir o objeto de dados a ser enviado via API
+      var data = {
+        message: message
+      };
+      
+      // Fazer a requisição para o Formspree via API
+      fetch("https://formspree.io/f/xaygwqpw", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          document.getElementById("formContent").style.display = "none"; // Oculta o conteúdo do formulário
+          document.getElementById("successMessage").innerText = "Recebemos seu pedido! Prossiga confiando, Jesus vive! Há esperança!"; // Define a mensagem de sucesso
+        } else {
+          alert("Ocorreu um erro ao enviar a mensagem.");
+        }
+      })
+      .catch(function(error) {
+        alert("Ocorreu um erro ao enviar a mensagem.");
+        console.log(error);
+      });
+    });
+
+  </script>
+
 </body>
 </html>
