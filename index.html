@@ -339,7 +339,9 @@ overflow-x: hidden!important;
   color: white;
   border: none;
   cursor: pointer;
+  margin-top: 10px;
 }
+
 
 .prayer button:hover {
   background-color: #ff5401;
@@ -351,6 +353,13 @@ overflow-x: hidden!important;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 400;
+}
+
+.success-message h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color:#ff3701
 }
 
 .success-message b {
@@ -401,7 +410,7 @@ overflow-x: hidden!important;
   <div class="prayer">
     <h2><span style="font-weight: 400;">Por favor, orem por</span> <strong>MIM</strong></h2>
     <form id="emailForm">
-      <div id="formContent">
+      <div id="formContent" style="display: flex; flex-direction: column;">
         <textarea id="message" name="message" rows="4" placeholder="Escreva seu pedido de oração" required></textarea>
         <button type="submit"><b>Enviar</b> Pedido</button>
       </div>
