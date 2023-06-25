@@ -307,47 +307,55 @@ overflow-x: hidden!important;
 }
 
 .prayer h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 
-    .prayer form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.prayer form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.prayer label {
+  display: block;
+  margin-bottom: 10px;
+}
 
-    .prayer label {
-      display: block;
-      margin-bottom: 10px;
-    }
-    .prayer textarea {
-      width: 400px;
-      height: 100px;
-      padding: 10px;
-      margin-right: 10px;
-      resize: none;
-    }
-    .prayer button {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      padding: 10px 20px;
-      background-color: #ff3701;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .prayer button:hover {
-      background-color: #ff5401;
-    }
-    .success-message {
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
-    }
+.prayer textarea {
+  width: 400px;
+  height: 100px;
+  padding: 10px;
+  margin-right: 10px;
+  resize: none;
+}
 
+.prayer button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #ff3701;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.prayer button:hover {
+  background-color: #ff5401;
+}
+
+.success-message {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.success-message b {
+  font-weight: 800;
+}
 
 
   </style>
@@ -391,15 +399,19 @@ overflow-x: hidden!important;
 
   
   <div class="prayer">
-    <h2>Por favor, orem por <b>MIM</b></h2>
+    <h2><span style="font-weight: 400;">Por favor, orem por</span> <strong>MIM</strong></h2>
     <form id="emailForm">
       <div id="formContent">
         <textarea id="message" name="message" rows="4" placeholder="Escreva seu pedido de oração" required></textarea>
         <button type="submit"><b>Enviar</b> Pedido</button>
       </div>
-      <div id="successMessage" class="success-message"></div>
+      <div id="successMessage" class="success-message" style="display: none;">
+        <h3>Recebemos seu pedido!</h3>
+        <p>Prossiga confiando, <strong>Jesus vive!</strong> Há esperança!</p>
+      </div>
     </form>
   </div>
+  
 
 
   <footer>
@@ -445,37 +457,38 @@ $(document).ready(function() {
 
 // Função para enviar o pedido de oração para o Gmail
 document.getElementById("emailForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Impede o envio do formulário padrão
-      
-      // Obter o valor da mensagem
-      var message = document.getElementById("message").value;
-      
-      // Construir o objeto de dados a ser enviado via API
-      var data = {
-        message: message
-      };
-      
-      // Fazer a requisição para o Formspree via API
-      fetch("https://formspree.io/f/xaygwqpw", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-      .then(function(response) {
-        if (response.ok) {
-          document.getElementById("formContent").style.display = "none"; // Oculta o conteúdo do formulário
-          document.getElementById("successMessage").innerText = "Recebemos seu pedido! Prossiga confiando, Jesus vive! Há esperança!"; // Define a mensagem de sucesso
-        } else {
-          alert("Ocorreu um erro ao enviar a mensagem.");
-        }
-      })
-      .catch(function(error) {
-        alert("Ocorreu um erro ao enviar a mensagem.");
-        console.log(error);
-      });
-    });
+  event.preventDefault(); // Impede o envio do formulário padrão
+  
+  // Obter o valor da mensagem
+  var message = document.getElementById("message").value;
+  
+  // Construir o objeto de dados a ser enviado via API
+  var data = {
+    message: message
+  };
+  
+  // Fazer a requisição para o Formspree via API
+  fetch("https://formspree.io/f/xaygwqpw", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(function(response) {
+    if (response.ok) {
+      document.getElementById("formContent").style.display = "none"; // Oculta o conteúdo do formulário
+      document.getElementById("successMessage").style.display = "block"; // Exibe a mensagem de agradecimento
+    } else {
+      alert("Ocorreu um erro ao enviar a mensagem.");
+    }
+  })
+  .catch(function(error) {
+    alert("Ocorreu um erro ao enviar a mensagem.");
+    console.log(error);
+  });
+});
+
 
   </script>
 
